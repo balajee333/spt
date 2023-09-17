@@ -7,22 +7,19 @@
   forms.forEach( function(e) {
     e.addEventListener('submit', function(event) {
       event.preventDefault();
-
       let thisForm = this;
-      
       thisForm.querySelector('.loading').classList.add('d-block');
       thisForm.querySelector('.error-message').classList.remove('d-block');
       thisForm.querySelector('.sent-message').classList.remove('d-block');
-
-      let formData = new FormData( thisForm );
-      sendEnquiryToWhatsapp(thisForm, formData);
+      let name = document.getElementById('name').value;
+      let message = document.getElementById('message').value;
+      sendEnquiryToWhatsapp(name, message);
 
     });
   });
 
-  function sendEnquiryToWhatsapp(thisForm, formData) {
-    window.open("https://api.whatsapp.com/send?phone=9942883242&text=Hi SPT! I want to book a cab service!");
+  function sendEnquiryToWhatsapp(name, message) {
+    window.open(`https://api.whatsapp.com/send?phone=9942883242&text=Hi SPT, I am ${name}. ${message}`);
   }
 
 })();
-``
